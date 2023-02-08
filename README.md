@@ -26,7 +26,7 @@ Para as histórias iremos _entrevistar_ um aluno e um professor para apurar suas
 
 O Aluno se chama Leandro, possui 23 anos e cursa `Engenharia de Software` e está atualmente no segundo périodo.
 
-O professor se chama João Barros, possui 61 anos e leciona no curso de Engenharia de Software pela `UT`.
+O professor se chama João Barros, possui 61 anos e leciona no curso de `Engenharia de Software` pela `UT`.
 
 ___
 
