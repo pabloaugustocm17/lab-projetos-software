@@ -1,2 +1,2 @@
-# lab-projetos-software
-Repositório para a disciplina de laboratório de projetos de software
+# Laborátorio de Projetos de Software
+//TO DO -> Histórias do Usuário
