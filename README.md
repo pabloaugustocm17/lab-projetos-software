@@ -13,8 +13,8 @@ Alunos:
 > - [História de Usuários](#historia_usuario)
 >   - [Aluno](#aluno)
 >   - [Professor](#professor)
-> - [Diagramas de Caso de Uso](#diagrmas_caso_uso)
-
+> - [Diagramas de Caso de Uso](#diagramas_caso_uso)
+>   - [Aluno](#aluno_caso_uso)
 
 <h3 href="#historia_usuario">História de Usuários</h3>
 
@@ -38,4 +38,14 @@ ___
 
 Meu nome é João Barros, sou professor da universidade `UT`, Universidade Tancredo, tenho 61 anos, leciono por 37 anos e sempre tive dificuldades com as planilhas enviadas para mim, dessa forma eu quero conseguir ver quais disciplinas estarei lecionando, juntamente à relação de alunos matriculados em cada uma delas, em um mesmo sistema, ambos dando corpo à uma lista simples e enxuta.
 
-<h3 href="#diagrmas_caso_uso">Diagramas de Caso de Uso</h3>
+___
+
+<h3 href="#diagramas_caso_uso">Diagramas de Caso de Uso</h3>
+
+___
+
+<h4 href="#aluno_caso_uso">Caso de Uso do Aluno</h4>
+
+![Caso de Uso do Aluno](https://github.com/pabloaugustocm17/lab-projetos-software/blob/main/projeto/CasoDeUsoAluno_1.png)
+
+___
