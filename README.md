@@ -26,7 +26,7 @@ Para as histórias iremos _entrevistar_ um aluno e um professor para apurar suas
 
 O Aluno se chama Leandro, possui 23 anos e cursa `Engenharia de Software` e está atualmente no segundo périodo.
 
-O Professor...
+O professor se chama João Barros, possui 61 anos e leciona no curso de Engenharia de Software pela `UT`.
 
 ___
 
@@ -36,6 +36,6 @@ ___
 
 <h4 href="#professor">Professor</h4>
 
-...
+Meu nome é João Barros, sou professor da universidade `UT`, Universidade Tancredo, tenho 61 anos, leciono por 37 anos e sempre tive dificuldades com as planilhas enviadas para mim, dessa forma eu quero conseguir ver quais disciplinas estarei lecionando, juntamente à relação de alunos matriculados em cada uma delas, em um mesmo sistema, ambos dando corpo à uma lista simples e enxuta.
 
 <h3 href="#diagrmas_caso_uso">Diagramas de Caso de Uso</h3>
