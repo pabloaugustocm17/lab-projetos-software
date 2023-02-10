@@ -49,3 +49,11 @@ ___
 ![Caso de Uso do Aluno](https://github.com/pabloaugustocm17/lab-projetos-software/blob/main/projeto/CasoDeUsoAluno_1.png)
 
 ___
+
+<h4 href="#aluno_caso_uso">Caso de Uso do Professor</h4>
+
+![Caso de Uso do Professor](https://github.com/pabloaugustocm17/lab-projetos-software/blob/main/projeto/casoDeUsoProfessor.png)
+
+___
+
+
