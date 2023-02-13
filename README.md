@@ -10,14 +10,14 @@ Alunos:
 
 ## Sprint 1
 
-> - [História de Usuários](#historia_usuario)
+> - História de Usuários
 >   - [Aluno](#aluno)
 >   - [Professor](#professor)
-> - [Diagramas de Caso de Uso](#diagramas_caso_uso)
->   - [Aluno](#aluno_caso_uso)
+> - Diagramas de Caso de Uso
+>   - [Aluno](#caso1)
+>   - Professor(#caso2)
 
-<h3 href="#historia_usuario">História de Usuários</h3>
-
+### História de Usuários
 ___
 
 Os atores da história fictícia fazem parte da `UT` (Universidade Tancredo) onde o sistema atual é apenas em base de planilhas no excel, contendo os alunos de cada semestre, mostrando as disciplinas no qual eles estam matriculados. Os professores e a secretaria possuem acesso à essas planilhas, que são utilizadas para gestão destes alunos e lista de chamada dos professores.
@@ -32,7 +32,7 @@ ___
 
 <h4 href="#aluno">Aluno</h4>
 
-...
+Me chamo Leandro, sou aluno do curso de Entenharia de Software pela `UT`, estou atualmente no segundo périodo, desde que entrei sinto a necessidade de um acesso mais fácil às minha disciplinas, isso ocorre desde o processo de registro na grade, até o ponto onde eu possa ver a situação da matrícula, e no fim quais realmente eu estou matriculado. Esse acesso seria disponibilizados para todos os alunos, em uma possível plataforma web, para garantir essa facilidade descrita anteriormente.
 
 <h4 href="#professor">Professor</h4>
 
@@ -40,17 +40,17 @@ Meu nome é João Barros, sou professor da universidade `UT`, Universidade Tancr
 
 ___
 
-<h3 href="#diagramas_caso_uso">Diagramas de Caso de Uso</h3>
+### Diagramas de Caso de Uso
 
 ___
 
-<h4 href="#aluno_caso_uso">Caso de Uso do Aluno</h4>
+<h4 href="#caso1">Caso de Uso do Aluno</h4>
 
 ![Caso de Uso do Aluno](https://github.com/pabloaugustocm17/lab-projetos-software/blob/main/projeto/CasoDeUsoAluno_1.png)
 
 ___
 
-<h4 href="#aluno_caso_uso">Caso de Uso do Professor</h4>
+<h4 href="#caso2">Caso de Uso do Professor</h4>
 
 ![Caso de Uso do Professor](https://github.com/pabloaugustocm17/lab-projetos-software/blob/main/projeto/casoDeUsoProfessor.png)
 
