@@ -15,7 +15,7 @@ Alunos:
 >   - [Professor](#professor)
 > - Diagramas de Caso de Uso
 >   - [Aluno](#caso1)
->   - Professor(#caso2)
+>   - [Professor](#caso2)
 
 ### História de Usuários
 ___
