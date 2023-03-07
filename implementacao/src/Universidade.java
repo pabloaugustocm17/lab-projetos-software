@@ -7,7 +7,6 @@ public class Universidade {
     private List<Curso> cursos;
     private List<Pessoa> pessoas;
     private Semestre semestre;
-    private Date DATAATUAL;
 
     public Universidade(String nome){
 
@@ -21,7 +20,6 @@ public class Universidade {
     public void abrirSemestre(String inicio, String fim){
 
     }
-
 
     public boolean fecharSemestre(){
 
@@ -53,8 +51,4 @@ public class Universidade {
         return false;
     }
 
-    public boolean cadastrar(String type, Pessoa pessoa){
-
-        return false;
-    }
 }

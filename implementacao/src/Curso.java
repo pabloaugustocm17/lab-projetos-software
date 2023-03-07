@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Curso {
+public class Curso implements iRelatorio{
 
     public String curso;
     private List<Disciplina> disciplinas;
@@ -10,9 +10,10 @@ public class Curso {
 
     }
 
-
     @Override
-    public String toString() {
-        return super.toString();
+    public String gerarRelatorio() {
+        return null;
     }
+
+
 }
