@@ -1,24 +1,20 @@
-public abstract class Pessoa implements iRelatorio{
+public abstract class Pessoa{
 
-    public String nome;
-    public String userName;
-    public String senha;
+    private String nome;
+    private String senha;
+    private String userName;
 
-    Pessoa(String nome, String userName, String senha){
-
+    Pessoa(String nome, String senha, String userName){
+        this.nome = nome;
+        this.senha = senha;
+        this.userName = userName;
     }
 
-    public boolean validarLogin(String userName, String senha){
-
-        return false;
+    public String getNome() {
+        return nome;
     }
 
-    @Override
-    public String gerarRelatorio(){
-
-        return "";
+    public String getUserName() {
+        return userName;
     }
-
-
-
 }

@@ -5,23 +5,14 @@ public class Secretaria extends Pessoa{
         super(nome, userName, senha);
     }
 
-    public void abrirSemestre(String inicio, String fim){
+    public void gerarCurriculo(){
 
-    }
 
-    public String gerarCurriculo(String name){
-
-        return "";
     }
 
     public void salvarDados(){
 
     }
 
-    @Override
-    public String gerarRelatorio(){
-
-        return "";
-    }
 
 }

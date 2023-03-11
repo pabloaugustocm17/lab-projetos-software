@@ -1,11 +1,44 @@
 public class Despesa {
 
-    private int id;
+    private long id;
     private double valor;
     private boolean status;
+    private Aluno aluno;
 
-    private void pagar(){
+    Despesa(Double valor, Aluno aluno){
+        this.valor = valor;
+        this.aluno = aluno;
+        this.status = false;
+    }
 
+
+    /**
+     * recebe um status e se ele for diferente do status existente, sempre iniciado com falso,
+     * e verdadeiro, altera seu valor, caso não for é lançada uma exceção de acordo com cada caso.
+     */
+    public void setStatus(boolean status) throws Exception{
+        if(this.status != status && status == true)
+            this.status = status;
+        else if(this.status == status == true)
+            throw new Exception("Essa despesa já foi paga!");
+        else if(this.status == status == false)
+            throw new Exception("Essa despesa não pode ser cancelada!");
+    }
+
+    public boolean getStatus() {
+        return this.status;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
     }
 
 }
