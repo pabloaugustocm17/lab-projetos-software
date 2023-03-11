@@ -1,54 +1,81 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Universidade {
 
     public String nome;
-    private List<Curso> cursos;
     private List<Pessoa> pessoas;
-    private Semestre semestre;
 
-    public Universidade(String nome){
-
+    public Universidade(String  name){
+        this.nome = name;
+        this.pessoas = new LinkedList<>();
     }
 
-    public String gerarCurriculo(String name){
-
-        return "";
+    public Universidade(String  name, List<Pessoa> pessoas){
+        this.nome = name;
+        this.pessoas = new LinkedList<>(pessoas);
     }
 
-    public void abrirSemestre(String inicio, String fim){
 
+    /**
+     * Aceita tanto o formato DD/MM/YYYY quanto DD-MM-YYYY
+     * @param inicio -> Data que o semestre irá iniciar
+     * @param fim -> Data que o semstre irá fechar
+     * @throws ParseException
+     */
+    public Semestre abrirSemestre(String inicio, String fim) throws ParseException{
+        Date start;
+        Date end;
+
+        start = trataData(inicio);
+        end = trataData(fim);
+        return new Semestre(start, end,this);
     }
 
-    public boolean fecharSemestre(){
+    private Date trataData(String data) throws ParseException{
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+        SimpleDateFormat formato2 = new SimpleDateFormat("dd-MM-yyyy"); 
+        Date date= null;
+        if(data.contains("/"))
+        date =  formato.parse(data);
+        else if(data.contains("-"))
+            date =   formato2.parse(data);
+
+        if(date != null)
+            return date;
+        else
+            throw new ParseException("Formato da data está errado", 0);
+    }
+
+    public boolean fecharSemestre(Semestre semestre){
+        semestre.setAberto(false);
+        return false;
+    }
+
+    public boolean adicionarCurso(Curso curso){
 
         return false;
     }
 
-    public boolean addCurso(Curso curso){
+    public boolean cancelarCurso(Curso curso){
 
         return false;
     }
 
-    public boolean addDisciplina(String curso, Disciplina disc){
 
-        return false;
+    public boolean adicionarPessoa(Pessoa pessoa){
+        return this.pessoas.add(pessoa);
     }
 
-    public boolean deleteCurso(String curso){
-
-        return false;
+    public boolean retirarPessoa(Pessoa pessoa){
+        return this.pessoas.remove(pessoa);
     }
 
-    public boolean deleteDisciplaina(String disc){
-
-        return false;
-    }
-
-    public boolean semestreAtivo(){
-
-        return false;
+    public List<Pessoa> getPessoas() {
+        return new LinkedList<>(this.pessoas);
     }
 
 }

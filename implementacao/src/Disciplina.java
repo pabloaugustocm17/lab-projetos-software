@@ -1,34 +1,33 @@
-import java.util.List;
-
 public class Disciplina implements iRelatorio{
 
     public String nome;
-    public Professor prof;
-    private boolean obrigatorio;
-    private boolean status;
-    private List<Matricula> matriculas;
+    public Professor professor;
+    private boolean obrigatoria;
 
     public Disciplina(String nome, Professor professor, boolean obrigatorio){
-
-    }
-
-    public boolean ativaDisciplina(){
-
-        return false;
-    }
-
-    public boolean addMatricula(Matricula matricula){
-
-        return false;
-    }
-
-    public boolean deleteMatricula(Matricula matricula){
-
-        return false;
+        this.nome = nome;
+        this.professor = professor;
+        this.obrigatoria = obrigatorio;
     }
 
     @Override
     public String gerarRelatorio() {
-        return null;
+
+        StringBuilder relatorio = new StringBuilder();
+        relatorio.append("nome: " + this.nome +"\n");
+        relatorio.append("professor: " + this.professor);
+        if(obrigatoria)
+            relatorio.append("obrigatoria");
+
+        return relatorio.toString();
     }
+
+    public Professor getProfessor() {
+        return this.professor;
+    }
+
+    public boolean getObrigatorio() {
+        return this.obrigatoria;
+    }
+    
 }
