@@ -1,5 +1,6 @@
 public class Despesa {
 
+    private static long idControl = 0;
     private long id;
     private double valor;
     private boolean status;
@@ -9,6 +10,8 @@ public class Despesa {
         this.valor = valor;
         this.aluno = aluno;
         this.status = false;
+        Despesa.idControl++;
+        this.id = Despesa.idControl;
     }
 
 
