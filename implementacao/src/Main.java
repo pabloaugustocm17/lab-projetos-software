@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -7,6 +8,11 @@ class Main{
  	public static final Scanner TECLADO = new Scanner(System.in);
 
  	public static final Universidade UNIVERSIDADE = new Universidade("UniversidadeX");
+
+    public static final LinkedList<Matricula> MATRICULAS = new LinkedList<>();
+
+    public static final LinkedList<Despesa> DESPESAS = new LinkedList<>();
+
 
  	public static final HashMap<Integer, String> VALORES_OPCOES = retornaOpcoes();
 
@@ -29,7 +35,7 @@ class Main{
  				case("1"):
  					realizaLogin();
  					break;
-				case("2):
+				case("2"):
 				 	cadastraAluno();
 				     	break;
  				default:
@@ -63,12 +69,12 @@ class Main{
 		System.out.println("Informe seu username: ");
  		String username = TECLADO.next();
 		
-		boolean isValido = validaUsername(username);
+		boolean isValido = validaUserName(username);
 		
 		do{
 			
 			System.out.println("Username já existe, informe seu novo username: ");
- 			String username = TECLADO.next();
+ 			username = TECLADO.next();
 			
 		}while(!isValido);
 		
@@ -79,15 +85,19 @@ class Main{
 	
 	}
 				     
-	private static boolean validaUserName(String username){
+	public static boolean validaUserName(String username){
 		
-		UNIVERSIDADE.getPessoas().forEach(pessoa -> {
-			if(pessoa.getUserName().equals(username)){
-				return false;
+        AtomicBoolean valido = new AtomicBoolean(true);
+
+        UNIVERSIDADE.getPessoas().forEach(pessoa -> {
+
+            if(pessoa.getUserName().equals(username)){
+				valido.set(false);
 			}
-		});
+
+        });
 		
-		return true;
+		return valido.get();
 		
 	}
 				     
@@ -128,7 +138,7 @@ class Main{
 		
 		UNIVERSIDADE.getPessoas().forEach(pessoa -> {
 			
-			if(aluno.equals(pessoa){
+			if(aluno.equals(pessoa)){
 				throw new RuntimeException("Aluno já cadastrado");
 			}
 			
