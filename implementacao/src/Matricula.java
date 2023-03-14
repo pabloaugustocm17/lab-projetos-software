@@ -36,5 +36,31 @@ public class Matricula {
         this.status = status;
     }
 
+    public static int[] retornaQuantidadeMatriculasAluno(Aluno aluno){
+
+        int quantidadeMatriculasObrigatorias = 0;
+        int quantidadeMatriculasNObrigatorias = 0;
+
+        for(Matricula matricula : Main.MATRICULAS){
+
+            if(matricula.getAluno().equals(aluno)){
+                
+                if(matricula.getDisciplina().getObrigatorio()){
+                    quantidadeMatriculasObrigatorias++;
+                }else{
+                    quantidadeMatriculasNObrigatorias++;
+                }
+
+            }
+        }
+
+        int[] vetor = new int[2];
+
+        vetor[0] = quantidadeMatriculasObrigatorias;
+        vetor[1] = quantidadeMatriculasNObrigatorias;
+
+        return vetor;
+
+    }
 
 }

@@ -30,7 +30,22 @@ public class Curso implements iRelatorio{
     }
 
     public boolean cancelarDisciplina(Disciplina disciplina) {
-        return this.disciplinas.remove(disciplina);
+
+        Disciplina disc = null;
+
+        for(Disciplina discTemp : this.disciplinas){
+
+            if(discTemp.equals(disciplina)){
+                disc = discTemp;
+            }
+        }
+
+        if(disc == null){
+            return false;
+        }else{
+            this.disciplinas.remove(disc);
+            return true;
+        }
     }
 
 
@@ -49,9 +64,6 @@ public class Curso implements iRelatorio{
         return relatorio.toString();
     }
 
-    public Universidade getUniversidade() {
-        return this.universidade;
-    }
 
     public List<Disciplina> getDisciplinas() {
         return new LinkedList<>(this.disciplinas);

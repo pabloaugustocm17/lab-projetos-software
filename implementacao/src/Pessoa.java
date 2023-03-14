@@ -17,4 +17,8 @@ public abstract class Pessoa{
     public String getUserName() {
         return userName;
     }
+
+    public String getSenha() {
+        return senha;
+    }
 }

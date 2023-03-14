@@ -55,14 +55,33 @@ public class Universidade {
         return false;
     }
 
-    public boolean adicionarCurso(Curso curso){
 
+    public boolean criaCurso(String nome, long credito){
+        Curso curso = new Curso(nome, credito,this);
+        Main.CURSOS.add(curso);
         return false;
+
     }
 
-    public boolean cancelarCurso(Curso curso){
+    public boolean cancelarCurso(Curso curso) throws IllegalAccessException{
 
-        return false;
+
+        Curso curso_Remover = null;
+
+        for(Curso cursoTemp : Main.CURSOS){
+
+            if(cursoTemp.equals(curso)){
+                curso_Remover = curso;
+            }
+        }
+
+        if(curso_Remover == null){
+            return false;
+        }else{
+            Main.CURSOS.remove(curso_Remover);
+            return true;
+        }
+        
     }
 
 

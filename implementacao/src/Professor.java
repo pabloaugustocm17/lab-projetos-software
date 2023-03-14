@@ -8,27 +8,15 @@ public class Professor extends Pessoa{
         super(nome, user, senha);
     }
 
-    /**
-     * getDeclaredFields() => pega todos os atributos da classe Disciplina e armazena em um array do
-     * tipo Field (tipo que representa um atributo de uma classe) e percorre ele procurando um
-     * atributo "professor", então acessa ele, pega o valor do atributo e compara o tipo dele
-     * com o tipo da classe Professor, se forem iguais a Disciplina correspondente
-     * é adicionada na lista de disciplinas.
-     */
+    public List<Disciplina> visualizarDisciplinas() {
 
-    public List<Disciplina> visualizarDisciplinas() throws IllegalAccessException {
-        List<Disciplina> disciplinas = new ArrayList<>();
-        Field[] fields = Disciplina.class.getDeclaredFields();
-        for(Field field : fields){
-            if(field.getName().equals("professor")){
-                field.setAccessible(true);
-                Professor professor = (Professor) field.get(this);
-                if(professor == this){
-                    disciplinas.add((Disciplina) field.get(this));
-                }
+        for(Disciplina disciplina : Main.DISCIPLINAS){
+            System.out.println("/n--DISCIPLINAS--");
+            if(disciplina.getProfessor().equals(this)){
+            System.out.println(disciplina.getNome());
             }
         }
-        return disciplinas;
+        
     }
 
 }
