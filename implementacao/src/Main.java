@@ -1,77 +1,85 @@
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 class Main{
 	
-	public static final Scanner TECLADO = new Scanner();
+ 	public static final Scanner TECLADO = new Scanner(System.in);
 
-	public static final UNIVERSIDADE = new Universidade("UniversidadeX");
+ 	public static final Universidade UNIVERSIDADE = new Universidade("UniversidadeX");
 
-	public static final HashMap<Integer, String> VALORES_OPCOES = retornaOpcoes();
+ 	public static final HashMap<Integer, String> VALORES_OPCOES = retornaOpcoes();
 
-	public static void main(String[] args){
+ 	public static void main(String[] args){
 		
-		do{
+        String opcao = "";
+
+ 		do{
 			
-			VALORES_OPCOES.forEach((key, method) -> {
+ 			VALORES_OPCOES.forEach((key, method) -> {
 			
-				System.out.println(key + "-" + method);
+ 				System.out.println(key + "-" + method);
 			
-			});
+ 			});
 			
-			String opcao = TECLADO.next();
+ 			opcao = TECLADO.next();
 			
-			switch(opcao){
+ 			switch(opcao){
 			
-				case("1"):
-					realizaLogin();
-					break;
-				default:
-					System.out.println("Opção não disponível");
-			}
+ 				case("1"):
+ 					realizaLogin();
+ 					break;
+ 				default:
+ 					System.out.println("Opção não disponível");
+ 			}
 			
 			
-		}while(opcao != "0");
+ 		}while(opcao != "0");
 		
 		
 			
-	}
+ 	}
 	
 	
-	public static void retornaOpcoes(){
+ 	public static HashMap<Integer, String> retornaOpcoes(){
 
-		VALORES_OPCOES = new HashMap<>();
+ 		HashMap<Integer, String> values = new HashMap<>();
 	
-		VALORES_OPCOES.put(0, "Sair");
-		VALORES_OPCOES.put(1, "Logar");
+ 		values.put(0, "Sair");
+ 		values.put(1, "Logar");
+
+        return values;
 	
-	}	
+ 	}	
 
-	public static void realizaLogin(){
+ 	public static void realizaLogin(){
 		
-		System.out.println("Informe seu username: ");
-		String username = TECLADO.next();
-		System.out.println("Informe sua senha: ");
-		String senha = TECLADO.next();
+ 		System.out.println("Informe seu username: ");
+ 		String username = TECLADO.next();
+ 		System.out.println("Informe sua senha: ");
+ 		String senha = TECLADO.next();
 		
-		if(realizaLogin(username, senha)){
-			System.out.println("Login realizado com sucesso");
-		}else{
-			System.out.println("Dados informados errados");
-		}
+ 		if(realizaLogin(username, senha)){
+ 			System.out.println("Login realizado com sucesso");
+ 		}else{
+ 			System.out.println("Dados informados errados");
+ 		}
 		
-	}
+ 	}
 
-	private static boolean realizaLogin(String username, String senha){
+ 	private static boolean realizaLogin(String username, String senha){
 		
-		AtomicBoolean atomic = new AtomicBoolean(false);
+ 		AtomicBoolean atomic = new AtomicBoolean(false);
 		
-		UNIVERSIDADE.getPessoas().forEach(pessoa -> {
+ 		UNIVERSIDADE.getPessoas().forEach(pessoa -> {
 			
-			if(pessoa.getUsername().equals(username) && pessoa.getSenha().equals(senha)){
-				atomic.set(true);
-			}
+ 			if(pessoa.getUserName().equals(username) && pessoa.getSenha().equals(senha)){
+ 				atomic.set(true);
+ 			}
 		
-		})
+ 		});
 		
-		return atomic.get();
+ 		return atomic.get();
 		
-	}
-}
+ 	}
+ }
