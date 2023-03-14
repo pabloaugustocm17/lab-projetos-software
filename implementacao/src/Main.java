@@ -35,6 +35,9 @@ class Main{
  				case("1"):
  					realizaLogin();
  					break;
+				case("2):
+				 	cadastraAluno();
+				     	break;
  				default:
  					System.out.println("Opção não disponível");
  			}
@@ -53,11 +56,47 @@ class Main{
 	
  		values.put(0, "Sair");
  		values.put(1, "Logar");
+		values.put(2, "Cadastrar Aluno");
 
-        return values;
+        	return values;
 	
  	}	
 
+	public static void cadastraAluno(){
+		
+		System.out.println("Informe seu username: ");
+		String nome = TECLADO.next();
+		System.out.println("Informe seu username: ");
+ 		String username = TECLADO.next();
+		
+		boolean isValido = validaUsername(username);
+		
+		do{
+			
+			System.out.println("Username já existe, informe seu novo username: ");
+ 			String username = TECLADO.next();
+			
+		}while(!isValido);
+		
+ 		System.out.println("Informe sua senha: ");
+ 		String senha = TECLADO.next();
+		
+		cadastraAluno(nome, username, senha);
+	
+	}
+				     
+	private static boolean validaUserName(String username){
+		
+		UNIVERSIDADE.getPessoas().forEach(pessoa -> {
+			if(pessoa.getUserName().equals(username)){
+				return false;
+			}
+		});
+		
+		return true;
+		
+	}
+				     
  	public static void realizaLogin(){
 		
  		System.out.println("Informe seu username: ");
@@ -88,4 +127,22 @@ class Main{
  		return atomic.get();
 		
  	}
+	
+	private static Aluno cadastraAluno(String username, String senha, String nome){
+		
+		Aluno aluno = new Aluno(nome, username, senha);
+		
+		UNIVERSIDADE.getPessoas().forEach(pessoa -> {
+			
+			if(aluno.equals(pessoa){
+				throw new RuntimeException("Aluno já cadastrado");
+			}
+			
+		});
+		
+		UNIVERSIDADE.getPessoas().add(aluno);
+			
+		return aluno;
+		
+	}
  }
