@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -7,11 +8,17 @@ class Main{
 	
  	public static final Scanner TECLADO = new Scanner(System.in);
 
+    public static final Random RANDOM = new Random();
+
  	public static final Universidade UNIVERSIDADE = new Universidade("UniversidadeX");
 
     public static final LinkedList<Matricula> MATRICULAS = new LinkedList<>();
 
     public static final LinkedList<Despesa> DESPESAS = new LinkedList<>();
+
+    public static final LinkedList<Professor> PROFESSORES = new LinkedList<>();
+
+    public static final LinkedList<Secretaria> SECRETARIAS = new LinkedList<>();
 
 
  	public static final HashMap<Integer, String> VALORES_OPCOES = retornaOpcoes();
@@ -36,8 +43,14 @@ class Main{
  					realizaLogin();
  					break;
 				case("2"):
-				 	cadastraAluno();
-				     	break;
+				 	cadastra("Aluno");
+				    break;
+                case ("3"):
+                    cadastra("Professor");
+                    break;    
+                case ("4"):
+                    cadastra("Secretaria");
+                    break;   
  				default:
  					System.out.println("Opção não disponível");
  			}
@@ -57,12 +70,14 @@ class Main{
  		values.put(0, "Sair");
  		values.put(1, "Logar");
 		values.put(2, "Cadastrar Aluno");
-
-        	return values;
+        values.put(3, "Cadastrar professor");
+        values.put(4, "Cadastra Secretária");
+        
+        return values;
 	
  	}	
 
-	public static void cadastraAluno(){
+	public static void cadastra(String tipo){
 		
 		System.out.println("Informe seu username: ");
 		String nome = TECLADO.next();
@@ -80,8 +95,17 @@ class Main{
 		
  		System.out.println("Informe sua senha: ");
  		String senha = TECLADO.next();
+
+        if(tipo.equals("Aluno")){
+            cadastraAluno(nome, username, senha);    
+        }else if(tipo.equals("Professor")){
+            cadastraProfessor(username, senha, nome);
+        }else if(tipo.equals("Secretaria")){
+            cadastraSecretaria(username, senha, nome);
+        }
 		
-		cadastraAluno(nome, username, senha);
+
+		
 	
 	}
 				     
@@ -145,8 +169,43 @@ class Main{
 		});
 		
 		UNIVERSIDADE.getPessoas().add(aluno);
-			
+        DESPESAS.add(new Despesa(RANDOM.nextDouble(1000), aluno));
+
 		return aluno;
 		
 	}
+
+    private static Professor cadastraProfessor(String username, String senha, String nome){
+
+        Professor professor_novo = new Professor(nome, username, senha);
+
+        PROFESSORES.forEach(professor -> {
+            if(professor.equals(professor_novo)){
+                throw new RuntimeException("Professor já existe");
+            }
+        });
+
+        PROFESSORES.add(professor_novo);
+
+        return professor_novo;
+
+    }
+
+
+    private static Secretaria cadastraSecretaria(String username, String senha, String nome){
+
+        Secretaria secretaria_novo = new Secretaria(nome, username, senha);
+
+        SECRETARIAS.forEach(professor -> {
+            if(professor.equals(secretaria_novo)){
+                throw new RuntimeException("Secretária já existe");
+            }
+        });
+
+        SECRETARIAS.add(secretaria_novo);
+
+        return secretaria_novo;
+
+    }
+
  }
