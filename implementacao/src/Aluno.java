@@ -52,18 +52,16 @@ public class Aluno extends Pessoa{
         int qtdMatriculasObg = 0;
         int qtdMatriculasOpc = 0;
         Field[] fields = Matricula.class.getDeclaredFields();
-        for(Field field : fields){
-            if(field.getName().equals("aluno") && !field.getName().equals(disciplina.getNome())){
+        for(Field field : fields) {
+            if (field.getName().equals("aluno") && !field.getName().equals(disciplina.getNome())) {
                 field.setAccessible(true);
                 Matricula matricula = (Matricula) field.get(this);
-                if(matricula.getStatus() == true) {
+                if (matricula.getStatus() == true) {
                     if (matricula.getDisciplina().getObrigatorio() == true)
                         qtdMatriculasObg++;
                     else
                         qtdMatriculasOpc++;
                 }
-            }else{
-                throw new Exception("O aluno já está matriculado nessa disciplina");
             }
         }
         if(disciplina.getObrigatorio() == true &&  qtdMatriculasObg < 4)
