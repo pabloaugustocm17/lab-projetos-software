@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -7,6 +8,11 @@ class Main{
  	public static final Scanner TECLADO = new Scanner(System.in);
 
  	public static final Universidade UNIVERSIDADE = new Universidade("UniversidadeX");
+
+    public static final LinkedList<Matricula> MATRICULAS = new LinkedList<>();
+
+    public static final LinkedList<Despesa> DESPESAS = new LinkedList<>();
+
 
  	public static final HashMap<Integer, String> VALORES_OPCOES = retornaOpcoes();
 
