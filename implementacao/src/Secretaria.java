@@ -1,3 +1,5 @@
+import java.lang.reflect.Field;
+
 public class Secretaria extends Pessoa{
 
     Secretaria(String nome, String userName, String senha) {
@@ -6,7 +8,6 @@ public class Secretaria extends Pessoa{
     }
 
     public void gerarCurriculo(){
-
 
     }
 

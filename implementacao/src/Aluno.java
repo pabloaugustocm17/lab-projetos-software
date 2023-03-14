@@ -41,10 +41,37 @@ public class Aluno extends Pessoa{
     }
 
     /**
-     * recebe uma disciplina e cria uma matricula com o prórpio aluno e uma disciplina
+     * getDeclaredFields() => pega todos os atributos da classe Matricula e armazena em um array do
+     * tipo Field (tipo que representa um atributo de uma classe) e percorre ele procurando um
+     * atributo "aluno" e uma disciplina com o nome diferente da recebida, então acessa ela e
+     * compara o tipo dele com o da classe Matricula, pega o valor do atributo e verifica se ela é obrigatoria
+     * ou não, contando a quantidade de cada uma e realizando ou não a matricula de acordo com isso
      */
-    public Matricula realizarMatricula(Disciplina disciplina){
-        return new Matricula(this, disciplina);
+    public Matricula realizarMatricula(Disciplina disciplina) throws Exception {
+
+        int qtdMatriculasObg = 0;
+        int qtdMatriculasOpc = 0;
+        Field[] fields = Matricula.class.getDeclaredFields();
+        for(Field field : fields){
+            if(field.getName().equals("aluno") && !field.getName().equals(disciplina.getNome())){
+                field.setAccessible(true);
+                Matricula matricula = (Matricula) field.get(this);
+                if(matricula.getStatus() == true) {
+                    if (matricula.getDisciplina().getObrigatorio() == true)
+                        qtdMatriculasObg++;
+                    else
+                        qtdMatriculasOpc++;
+                }
+            }else{
+                throw new Exception("O aluno já está matriculado nessa disciplina");
+            }
+        }
+        if(disciplina.getObrigatorio() == true &&  qtdMatriculasObg < 4)
+            return new Matricula(this, disciplina);
+        else if(disciplina.getObrigatorio() == false &&  qtdMatriculasOpc < 2 &&  qtdMatriculasObg < 4)
+            return new Matricula(this, disciplina);
+        else
+            throw new Exception("O aluno ultrapassou o número de disciplinas limite");
     }
 
     /**

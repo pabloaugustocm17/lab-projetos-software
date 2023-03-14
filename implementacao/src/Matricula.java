@@ -28,7 +28,7 @@ public class Matricula {
         return disciplina;
     }
 
-    public boolean getStatus(boolean status) {
+    public boolean getStatus() {
         return this.status;
     }
 

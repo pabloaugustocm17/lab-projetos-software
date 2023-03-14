@@ -29,5 +29,9 @@ public class Disciplina implements iRelatorio{
     public boolean getObrigatorio() {
         return this.obrigatoria;
     }
-    
+
+    public String getNome() {
+        return this.nome;
+    }
+
 }
