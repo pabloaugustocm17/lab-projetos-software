@@ -41,6 +41,7 @@ class Main{
  			});
 			
  			opcao = TECLADO.next();
+			TECLADO.nextLine();
 			
  			switch(opcao){
 			
@@ -200,7 +201,7 @@ class Main{
 			
 		});
 		
-		UNIVERSIDADE.getPessoas().add(aluno);
+		UNIVERSIDADE.adicionarPessoa(aluno);
         DESPESAS.add(new Despesa(RANDOM.nextDouble(1000), aluno));
 
 		return aluno;
