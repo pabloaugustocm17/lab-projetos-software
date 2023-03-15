@@ -74,6 +74,9 @@ class Main{
 				case ("9"):
 					cancelaDisciplina();
 					break;
+				case("10"):
+					verAlunos();
+					break;	
  				default:
  					System.out.println("Opção não disponível");
  			}
@@ -100,6 +103,7 @@ class Main{
         values.put(7, "Cria Curso");
 		values.put(8, "Registra Disciplina");
 		values.put(9, "Cancela Disciplina");
+		values.put(10, "Ver alunos em disciplina");
 
         return values;
 	
@@ -275,9 +279,7 @@ class Main{
 				buffer_escritor.write("DISCIPLINAS: ");
 
 				for(Disciplina disciplina : curso.getDisciplinas()){
-					buffer_escritor.write("Nome disciplina: " + disciplina.getNome());
-					buffer_escritor.newLine();
-					buffer_escritor.write("Nome professor: " + disciplina.getProfessor().getNome());
+					buffer_escritor.write(disciplina.gerarRelatorio());
 					buffer_escritor.newLine();
 				}
 
@@ -456,6 +458,21 @@ class Main{
 		}
 
 		return professor_utilizar;
+
+
+	}
+
+	private static void verAlunos(){
+
+		Disciplina disciplina = procuraDisciplina();
+
+		for(Aluno aluno : disciplina.getAlunos()){
+
+			System.out.println("Aluno: " + aluno.getNome());
+
+		}
+
+		System.out.println("Professor: " + disciplina.getProfessor().getNome());
 
 
 	}
