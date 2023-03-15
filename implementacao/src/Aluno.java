@@ -1,8 +1,5 @@
 public class Aluno extends Pessoa{
 
-    private static int qtdMatriculasObg = 0;
-    private static int qtdMatriculasOpc = 0;
-
     public Aluno(String nome, String userName, String senha){
         super(nome, userName, senha);
     }
