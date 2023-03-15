@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
@@ -20,10 +23,12 @@ class Main{
 
     public static final LinkedList<Secretaria> SECRETARIAS = new LinkedList<>();
 
+	public static final LinkedList<Curso> CURSOS = new LinkedList<>();
+
 
  	public static final HashMap<Integer, String> VALORES_OPCOES = retornaOpcoes();
 
- 	public static void main(String[] args){
+ 	public static void main(String[] args) throws Exception{
 		
         String opcao = "";
 
@@ -39,6 +44,9 @@ class Main{
 			
  			switch(opcao){
 			
+				case("0"):
+					opcao = null;
+					break;
  				case("1"):
  					realizaLogin();
  					break;
@@ -51,12 +59,27 @@ class Main{
                 case ("4"):
                     cadastra("Secretaria");
                     break;   
+				case ("5"):
+					geraRelatorio();
+					break;	
+				case ("6"):
+					realizaMatricula();
+					break;			
+				case ("7"):
+					criaCurso();
+					break;	
+				case ("8"):
+					registraDisciplina();
+					break;	
+				case ("9"):
+					cancelaDisciplina();
+					break;
  				default:
  					System.out.println("Opção não disponível");
  			}
 			
 			
- 		}while(opcao != "0");
+ 		}while(opcao != null);
 		
 		
 			
@@ -70,31 +93,36 @@ class Main{
  		values.put(0, "Sair");
  		values.put(1, "Logar");
 		values.put(2, "Cadastrar Aluno");
-        values.put(3, "Cadastrar professor");
+        values.put(3, "Cadastrar Professor");
         values.put(4, "Cadastra Secretária");
-        
+		values.put(5, "Gera relatório");
+		values.put(6, "Realiza Matrícula");
+        values.put(7, "Cria Curso");
+		values.put(8, "Registra Disciplina");
+		values.put(9, "Cancela Disciplina");
+
         return values;
 	
  	}	
 
 	public static void cadastra(String tipo){
 		
+		System.out.println("Informe seu nome: ");
+		String nome = TECLADO.nextLine();
 		System.out.println("Informe seu username: ");
-		String nome = TECLADO.next();
-		System.out.println("Informe seu username: ");
- 		String username = TECLADO.next();
+ 		String username = TECLADO.nextLine();
 		
 		boolean isValido = validaUserName(username);
 		
-		do{
+		while(!isValido){
 			
 			System.out.println("Username já existe, informe seu novo username: ");
- 			username = TECLADO.next();
+ 			username = TECLADO.nextLine();
 			
-		}while(!isValido);
+		}
 		
  		System.out.println("Informe sua senha: ");
- 		String senha = TECLADO.next();
+ 		String senha = TECLADO.nextLine();
 
         if(tipo.equals("Aluno")){
             cadastraAluno(nome, username, senha);    
@@ -128,9 +156,9 @@ class Main{
  	public static void realizaLogin(){
 		
  		System.out.println("Informe seu username: ");
- 		String username = TECLADO.next();
+ 		String username = TECLADO.nextLine();
  		System.out.println("Informe sua senha: ");
- 		String senha = TECLADO.next();
+ 		String senha = TECLADO.nextLine();
 		
  		if(realizaLogin(username, senha)){
  			System.out.println("Login realizado com sucesso");
@@ -191,7 +219,6 @@ class Main{
 
     }
 
-
     private static Secretaria cadastraSecretaria(String username, String senha, String nome){
 
         Secretaria secretaria_novo = new Secretaria(nome, username, senha);
@@ -208,4 +235,228 @@ class Main{
 
     }
 
- }
+	private static void realizaMatricula() throws Exception{
+
+		Aluno pessoa_utilizar = procuraAluno();
+
+		if(pessoa_utilizar == null){
+			System.out.println("Aluno não existe");
+			return;
+		}
+
+		Disciplina disciplina_utilizar = procuraDisciplina();
+
+		if(disciplina_utilizar == null){
+			System.out.println("Disciplina não encontrada");
+			return;
+		}
+
+		pessoa_utilizar.realizarMatricula(disciplina_utilizar);
+
+		
+	}
+
+	private static void geraRelatorio(){
+
+		try{
+
+			FileWriter escritor = new FileWriter("relatorio");
+
+			BufferedWriter buffer_escritor = new BufferedWriter(escritor);
+
+			buffer_escritor.write("CURSOS: ");
+			buffer_escritor.newLine();
+
+			for(Curso curso : CURSOS){
+
+				buffer_escritor.write("Nome curso: " + curso.getNome());
+				buffer_escritor.newLine();
+
+				buffer_escritor.write("DISCIPLINAS: ");
+
+				for(Disciplina disciplina : curso.getDisciplinas()){
+					buffer_escritor.write("Nome disciplina: " + disciplina.getNome());
+					buffer_escritor.newLine();
+					buffer_escritor.write("Nome professor: " + disciplina.getProfessor().getNome());
+					buffer_escritor.newLine();
+				}
+
+			}
+
+
+			buffer_escritor.write("MATRICULAS: ");
+			buffer_escritor.newLine();
+
+			for(Matricula matricula : MATRICULAS){
+
+				buffer_escritor.write("Aluno: " + matricula.getAluno().getNome());
+				buffer_escritor.newLine();
+				buffer_escritor.write("Disciplina: " + matricula.getDisciplina().getNome());
+				buffer_escritor.newLine();
+			}
+
+
+			buffer_escritor.close();
+
+			
+
+		}catch(IOException ioException){
+			throw new RuntimeException("ioException: " + ioException);
+		}
+
+		
+
+
+	}
+
+	private static void criaCurso(){
+
+		System.out.println("Informe o nome do curso: ");
+		String nome_curso = TECLADO.nextLine();
+
+		for(Curso curso : CURSOS){
+
+			if(curso.getNome().equals(nome_curso)){
+				throw new RuntimeException("Curso já existe");
+			}
+		}
+
+		Curso curso = new Curso(nome_curso, 0, UNIVERSIDADE);
+		CURSOS.add(curso);
+
+	}
+
+	private static void registraDisciplina(){
+
+		Curso curso_utilizar = procuraCurso();
+
+		if(curso_utilizar == null){
+			System.out.println("Curso não existe");
+			return;
+		}
+
+		System.out.println("Informe o nome da nova disciplina: ");
+		String nome_disciplina = TECLADO.nextLine();
+
+		System.out.println("Disciplina é obrigatória(S/N): ");
+		String obrigatoria = TECLADO.nextLine();
+		
+		Professor professor_utilizar = procuraProfessor();
+
+		if(professor_utilizar == null){
+			System.out.println("Professor não existe");
+			return;
+		}
+
+		boolean obg = false;
+
+		if(obrigatoria.equals("S")){
+			obg = true;
+		}
+
+		Disciplina disciplina = new Disciplina(nome_disciplina, professor_utilizar, obg);
+
+		curso_utilizar.adicionarDisciplina(disciplina);
+
+
+	}
+
+	private static void cancelaDisciplina() throws IllegalAccessException{
+
+		Aluno aluno = procuraAluno();
+
+		if(aluno == null){
+			System.out.println("Aluno não existe");
+			return;
+		}
+
+		Disciplina disciplina_utilizar = procuraDisciplina();
+
+		if(disciplina_utilizar == null){
+			System.out.println("Disciplina não existe");
+			return;
+		}
+
+
+		aluno.cancelarMatricula(disciplina_utilizar);
+
+	}
+
+	private static Aluno procuraAluno(){
+
+		System.out.println("Informe o nome do aluno: ");
+		String nome_aluno = TECLADO.nextLine();
+
+		Aluno aluno = null;
+
+		for (Pessoa pessoas : UNIVERSIDADE.getPessoas()) {
+			
+			if(pessoas.getNome().equals(nome_aluno)){
+				aluno = (Aluno) pessoas;
+			}
+
+		}
+
+		return aluno;
+
+	}
+
+	private static Disciplina procuraDisciplina(){
+
+		System.out.println("Informe a disciplina: ");
+		String nome_disciplina = TECLADO.nextLine();
+
+		Disciplina disciplina_utilizar = null;
+
+		for(Curso curso : CURSOS){
+
+			for(Disciplina disciplina : curso.getDisciplinas()){
+
+				if(disciplina.getNome().equals(nome_disciplina)){
+					disciplina_utilizar = disciplina;
+				}
+
+			}
+		}
+
+		return disciplina_utilizar;
+
+	}
+
+	private static Curso procuraCurso(){
+
+		System.out.println("Informe o nome do curso que receberá a disciplina: ");
+		String nome_curso = TECLADO.nextLine();
+
+		Curso curso_utilizar = null;
+
+		for (Curso curso : CURSOS) {
+		
+			if(curso.getNome().equals(nome_curso)){
+				curso_utilizar = curso;
+			}
+		}
+
+		return curso_utilizar;
+
+	}
+
+	private static Professor procuraProfessor(){
+
+		System.out.println("Inform o nome do professor: ");
+		String nome_professor = TECLADO.nextLine();
+
+		Professor professor_utilizar = null;
+
+		for(Professor professor : PROFESSORES){
+
+			if(professor.getNome().equals(nome_professor)){
+				professor_utilizar = professor;
+			}
+		}
+
+		return professor_utilizar;
+
+
+	}
+}
