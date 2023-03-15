@@ -28,7 +28,7 @@ public class Disciplina implements iRelatorio{
 
         StringBuilder relatorio = new StringBuilder();
         relatorio.append("nome: " + this.nome +"\n");
-        relatorio.append("professor: " + this.professor);
+        relatorio.append("professor: " + this.professor.getNome());
         if(obrigatoria)
             relatorio.append("obrigatoria");
 
