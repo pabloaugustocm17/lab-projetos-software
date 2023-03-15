@@ -1,6 +1,3 @@
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 public class Aluno extends Pessoa{
 
     static int qtdMatriculasObg = 0;

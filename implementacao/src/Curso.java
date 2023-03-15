@@ -13,6 +13,7 @@ public class Curso implements iRelatorio{
         this.nome = nome;
         this.creditos = creditos;
         this.universidade = universidade;
+        this.disciplinas = new LinkedList<>();
     }
 
     public Curso(String nome, long creditos, Universidade universidade){
@@ -69,5 +70,8 @@ public class Curso implements iRelatorio{
         return new LinkedList<>(this.disciplinas);
     }
 
+    public String getNome(){
+        return this.nome;
+    }
 
 }

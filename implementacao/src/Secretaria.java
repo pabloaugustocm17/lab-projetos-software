@@ -7,13 +7,11 @@ public class Secretaria extends Pessoa{
     }
 
     public void gerarCurriculo(){
-
+        
+        for(Curso curso : Main.CURSOS){
+            System.out.println(curso.gerarRelatorio());
+        }
 
     }
-
-    public void salvarDados(){
-
-    }
-
 
 }

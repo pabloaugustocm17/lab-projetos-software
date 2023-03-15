@@ -1,5 +1,4 @@
-import java.lang.reflect.Field;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Professor extends Pessoa{
@@ -10,12 +9,20 @@ public class Professor extends Pessoa{
 
     public List<Disciplina> visualizarDisciplinas() {
 
-        for(Disciplina disciplina : Main.DISCIPLINAS){
-            System.out.println("/n--DISCIPLINAS--");
-            if(disciplina.getProfessor().equals(this)){
-            System.out.println(disciplina.getNome());
+        List<Disciplina> result = new LinkedList<>();
+
+        System.out.println("\n--DISCIPLINAS--");
+        for(Curso curso : Main.CURSOS){
+            
+            for (Disciplina disciplina : curso.getDisciplinas()) {
+                if(disciplina.professor.getNome().equals(this.getNome())){
+                    result.add(disciplina);
+                    System.out.println("\n" + disciplina.gerarRelatorio());
+                }
             }
         }
+
+        return result;
         
     }
 
