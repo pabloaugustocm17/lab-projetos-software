@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class Disciplina implements iRelatorio{
 
     public String nome;
@@ -8,6 +10,17 @@ public class Disciplina implements iRelatorio{
         this.nome = nome;
         this.professor = professor;
         this.obrigatoria = obrigatorio;
+    }
+
+    public LinkedList<Aluno> getAlunos(){
+        
+        LinkedList<Aluno> alunos = new LinkedList<>();
+
+        for (Matricula matricula : Main.MATRICULAS) {
+            alunos.add(matricula.getAluno());
+        }
+
+        return alunos;
     }
 
     @Override
