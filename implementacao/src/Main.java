@@ -20,8 +20,6 @@ class Main{
 
     public static final LinkedList<Secretaria> SECRETARIAS = new LinkedList<>();
 
-    public static final LinkedList<Curso> CURSOS = new LinkedList<>();
-
 
  	public static final HashMap<Integer, String> VALORES_OPCOES = retornaOpcoes();
 
